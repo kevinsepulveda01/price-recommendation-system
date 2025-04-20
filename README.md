@@ -77,18 +77,18 @@ pandas, numpy, scipy, statsmodels, matplotlib, openpyxl
 Editar constantes en el script principal:
 
 # Estrategia de Precios
-PRECIO_OBJETIVO = 29000        # Precio ideal de referencia
-DELTAS = [0.05, 0.06, 0.07]    # Rangos de variación vs competencia
-PRECIO_COMPETENCIA = 28500      # Precio base de competidores
+- PRECIO_OBJETIVO = 29000        # Precio ideal de referencia
+- DELTAS = [0.05, 0.06, 0.07]    # Rangos de variación vs competencia
+- PRECIO_COMPETENCIA = 28500      # Precio base de competidores
 
 # Parámetros del Modelo
-MARGEN_MINIMO = 0.10            # Margen de ganancia mínimo requerido
-DEMANDA_ESPERADA = 7            # Unidades diarias objetivo
-COSTO = 20000                   # Costo unitario de producción
+- MARGEN_MINIMO = 0.10            # Margen de ganancia mínimo requerido
+- DEMANDA_ESPERADA = 7            # Unidades diarias objetivo
+- COSTO = 20000                   # Costo unitario de producción
 
 # Configuración Técnica
-MIN_DIAS = 3                    # Mínimo días de datos requeridos
-OUTLIER_IQR_THRESHOLD = 1.5     # Sensibilidad para detección de outliers
+- MIN_DIAS = 3                    # Mínimo días de datos requeridos
+- OUTLIER_IQR_THRESHOLD = 1.5     # Sensibilidad para detección de outliers
 
 ## 📊 Interpretación de Resultados
 
