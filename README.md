@@ -12,6 +12,7 @@ proyecto/
 │
 ├── modelo_precios.py          # Código principal con funciones y ejecución
 ├── graficos/                  # Carpeta de salida para los gráficos generados
+└── requirements.txt                  # Requerimientos a instalar para ejecutar el script
 └── README.md                  # Este documento
 ```
 
