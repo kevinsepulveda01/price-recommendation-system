@@ -125,18 +125,15 @@ Editar constantes en el script principal:
   - Región roja: Precios bajo costo mínimo ($20,000 * 1.10 = $22,000)
   - Banda amarilla: Rango de ±20% vs competencia ($28,500 ± $5,700)
 
-### Clave de Símbolos en Gráficos
-![Leyenda Gráficos](https://via.placeholder.com/600x400?text=Ejemplo+Visual+de+Gráfico)
-*(Nota: La imagen muestra un ejemplo conceptual de cómo interpretar los elementos visuales)*
-
 ## 🗂 Estructura del Repositorio
 modelo-precios-retail/
-├── .gitignore
-├── Graficos.png                # Muestra de visualizaciones
-├── LICENSE
-├── README.md                   # Este archivo
-├── modelo_precios.py           # Script principal
-└── requirements.txt            # Dependencias
+├── .gitignore # Archivo para excluir archivos del control de versiones
+├── Graficos.png # Captura de pantalla de ejemplo de los gráficos
+├── LICENSE # Licencia del proyecto
+├── README.md # Documentación principal (este archivo)
+├── modelo_precios.py # Script principal del modelo de precios
+└── requirements.txt # Lista de dependencias de Python
+
 
 
 ## 🤝 Contribuciones
