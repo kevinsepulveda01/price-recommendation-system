@@ -11,7 +11,6 @@ Este proyecto está diseñado para analizar datos históricos de precios y canti
 proyecto/
 │
 ├── modelo_precios.py          # Código principal con funciones y ejecución
-├── precio_parte_ejemplo.xlsx  # Archivo de entrada de datos
 ├── graficos/                  # Carpeta de salida para los gráficos generados
 └── README.md                  # Este documento
 ```
@@ -123,4 +122,4 @@ python modelo_precios.py
 
 ## ✍️ Autor
 
-Desarrollado por [Tu Nombre], con el objetivo de optimizar decisiones de pricing en productos de consumo y competencia directa.
+Desarrollado por [Kevin Sepúlveda], con el objetivo de optimizar decisiones de pricing en productos de consumo y competencia directa.
