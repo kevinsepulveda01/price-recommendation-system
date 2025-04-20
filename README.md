@@ -12,6 +12,7 @@ Este proyecto implementa un modelo de machine learning para determinar precios �
 - Detección de outliers en datos
 
 Incluye capacidades de:
+
 ✅ Análisis multivariable  
 ✅ Modelado econométrico  
 ✅ Optimización no lineal  
