@@ -1,126 +1,157 @@
+# Modelo de Optimización de Precios para Retail
 
-# 📊 Análisis de Precios y Elasticidad de la Demanda
+Herramienta avanzada para análisis de precios óptimos en retail utilizando datos históricos, elasticidad de demanda y competencia. Genera recomendaciones estratégicas y visualizaciones detalladas.
 
-Este proyecto está diseñado para analizar datos históricos de precios y cantidades vendidas de productos, con el objetivo de identificar precios óptimos que maximicen la utilidad, ajustar precios frente a la competencia, y modelar la elasticidad de la demanda. Además, genera gráficos para facilitar la visualización de los resultados por cada número de parte analizado.
+## 🔍 Visión General
 
----
+Este proyecto implementa un modelo de machine learning para determinar precios óptimos de productos considerando múltiples factores:
+- Comportamiento histórico de ventas
+- Precios de la competencia
+- Elasticidad de la demanda
+- Restricciones de margen mínimo
+- Detección de outliers en datos
 
-## 📁 Estructura del Proyecto
+Incluye capacidades de:
+✅ Análisis multivariable  
+✅ Modelado econométrico  
+✅ Optimización no lineal  
+✅ Visualización interactiva  
+✅ Reportes ejecutivos automáticos
 
-```
-proyecto/
-│
-├── modelo_precios.py          # Código principal con funciones y ejecución
-├── graficos/                  # Carpeta de salida para los gráficos generados
-└── requirements.txt                  # Requerimientos a instalar para ejecutar el script
-└── README.md                  # Este documento
-```
+## 🚀 Características Principales
 
----
+1. **Algoritmo de Optimización Híbrida**
+   - Combina análisis histórico con ajustes competitivos
+   - Balancea márgenes vs volumen de ventas
+   - Restricciones configurables de mercado
 
-## ⚙️ Requisitos
+2. **Modelo de Elasticidad Avanzado**
+   - Regresión logarítmica multivariable
+   - Predicción de demanda esperada
+   - Intervalos de confianza estadísticos
 
-- Python ≥ 3.7
-- Pandas
-- NumPy
-- Matplotlib
-- Statsmodels
-- Scipy
-- OpenPyXL (para leer archivos Excel)
+3. **Gestión Inteligente de Datos**
+   - Limpieza automática de datos
+   - Detección adaptativa de outliers
+   - Transformaciones no lineales
 
-Puedes instalar los paquetes necesarios con:
+4. **Sistema de Penalizaciones Ajustables**
+   - Control de márgenes mínimos
+   - Límites de desviación competitiva
+   - Factores de riesgo personalizables
 
-```bash
-pip install pandas numpy matplotlib statsmodels scipy openpyxl
-```
+## ⚙️ Instalación
 
----
+1. Clonar repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/modelo-precios-retail.git
+   cd modelo-precios-retail
 
-## 📌 Parámetros Clave del Modelo
+2. Instalar dependencias:
 
-| Parámetro                  | Descripción                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| `PRECIO_OBJETIVO`         | Precio que se desea alcanzar o evaluar.                                    |
-| `DELTAS`                  | Lista de márgenes para sensibilidad frente a precios de la competencia.    |
-| `MIN_DIAS`                | Días mínimos necesarios para considerar válida la serie histórica.         |
-| `PRECIO_COMPETENCIA`      | Precio actual de la competencia.                                           |
-| `DEMANDA_ESPERADA`        | Cantidad objetivo de ventas para estimar precio basado en elasticidad.     |
-| `PENALIZACION_OUTLIER`    | Factor de penalización por precios fuera del rango intercuartílico.        |
-| `MARGEN_MINIMO`           | Margen mínimo de ganancia sobre el costo.                                  |
-| `COSTO`                   | Costo base del producto.                                                   |
+pip install -r requirements.txt
 
----
+## Requisitos del Sistema:
 
-## 📈 Funcionalidades
+Python 3.8+
+Bibliotecas principales:
+pandas, numpy, scipy, statsmodels, matplotlib, openpyxl
 
-### 1. Limpieza y transformación de datos
+## 📊 Uso Básico
+1. Preparar archivo Excel con:
+- Hoja "BASE_MODELOS" con columnas:
+  - FECHA (formato fecha)
+  - PRECIO (numérico)
+  - CANTIDAD (entero)
+  - NUMERO DE PARTE (identificador único)
 
-- Filtrado de precios extremos.
-- Eliminación de cantidades negativas.
-- Estandarización de columnas de interés.
+2. Ejecutar modelo:
+   python modelo_precios.py
 
-### 2. Detección de outliers
+3. Resultados generados:
+   resultados_optimizacion.xlsx: Recomendaciones detalladas
+   Directorio graficos/: Análisis visual por producto
 
-- Usando el método de rango intercuartílico (IQR).
-- Se identifican precios y cantidades atípicas.
+## ⚙️ Configuración Avanzada
+Editar constantes en el script principal:
 
-### 3. Cálculo del precio óptimo histórico
+# Estrategia de Precios
+PRECIO_OBJETIVO = 29000        # Precio ideal de referencia
+DELTAS = [0.05, 0.06, 0.07]    # Rangos de variación vs competencia
+PRECIO_COMPETENCIA = 28500      # Precio base de competidores
 
-- Maximiza la utilidad `(precio - costo) * cantidad`.
-- Penaliza precios fuera del rango histórico.
+# Parámetros del Modelo
+MARGEN_MINIMO = 0.10            # Margen de ganancia mínimo requerido
+DEMANDA_ESPERADA = 7            # Unidades diarias objetivo
+COSTO = 20000                   # Costo unitario de producción
 
-### 4. Ajuste frente a la competencia
+# Configuración Técnica
+MIN_DIAS = 3                    # Mínimo días de datos requeridos
+OUTLIER_IQR_THRESHOLD = 1.5     # Sensibilidad para detección de outliers
 
-- Se limita el precio a un rango ajustado por `±delta` y por desviación máxima permitida.
-- Se escoge el precio con mayor utilidad dentro de este rango.
+## 📊 Interpretación de Resultados
 
-### 5. Modelado de elasticidad de demanda
+### Archivo de Salida (`resultados_optimizacion.xlsx`)
 
-- Regresión lineal en logaritmos: `log(cantidad) = β₀ + β₁ * log(precio)`
-- Se calcula la elasticidad, intercepto y se estima el precio que logra la demanda esperada.
+| Columna                     | Descripción                                                                 |
+|-----------------------------|-----------------------------------------------------------------------------|
+| `PRECIO_OPTIMO_HISTORICO`   | Precio que maximizó la utilidad histórica considerando costos y outliers    |
+| `PRECIO_AJUSTADO_COMPETENCIA` | Precio óptimo dentro del rango permitido (± delta) vs competencia           |
+| `PRECIO_DEMANDA_ESPERADA`   | Precio requerido para alcanzar la demanda objetivo de **7 unidades/día**    |
+| `ELASTICIDAD`               | Coeficiente de sensibilidad demanda-precio (valores negativos = demanda elástica) |
+| `CANTIDAD_PREDICHA`         | Unidades estimadas al precio objetivo de $29,000                            |
+| `OUTLIERS`                  | Transacciones atípicas detectadas (formato: `PRECIO:CANTIDAD`)              |
+| `DIAS_ANALIZADOS`           | Número de días considerados en el análisis                                  |
 
-### 6. Visualización
+### Gráficos Generados (`graficos/precios_[NUMERO_PARTE].png`)
 
-- Gráficos por número de parte.
-- Incluye puntos históricos, curvas de elasticidad, precios recomendados y líneas de competencia.
+- **Relación Precio-Demanda Histórica**
+  - Puntos azules: Transacciones reales
+  - Eje X: Precio de venta
+  - Eje Y: Cantidad vendida
 
----
+- **Curva Teórica de Elasticidad**
+  - Línea roja discontinua: Modelo de regresión logarítmica
+  - Ecuación: `ln(Cantidad) = Intercept + Elasticidad*ln(Precio)`
 
-## ▶️ Cómo usarlo
+- **Marcadores de Precios Clave**
+  - Línea verde (:): Mejor precio histórico
+  - Línea magenta (-.): Precio para demanda objetivo
+  - Líneas grises (transparentes): Variaciones por delta vs competencia
 
-1. Asegúrate de tener el archivo Excel con la hoja **BASE_MODELOS**.
-2. Configura el nombre del archivo en la línea final del script:
+- **Zonas Estratégicas**
+  - Área sombreada: Rango entre percentiles 25-75 de precios históricos
+  - Región roja: Precios bajo costo mínimo ($20,000 * 1.10 = $22,000)
+  - Banda amarilla: Rango de ±20% vs competencia ($28,500 ± $5,700)
 
-```python
-archivo_entrada = r"C:\ruta\a\tu\archivo.xlsx"
-```
+### Clave de Símbolos en Gráficos
+![Leyenda Gráficos](https://via.placeholder.com/600x400?text=Ejemplo+Visual+de+Gráfico)
+*(Nota: La imagen muestra un ejemplo conceptual de cómo interpretar los elementos visuales)*
 
-3. Ejecuta el script:
+## 🗂 Estructura del Repositorio
+modelo-precios-retail/
+├── .gitignore
+├── Graficos.png                # Muestra de visualizaciones
+├── LICENSE
+├── README.md                   # Este archivo
+├── modelo_precios.py           # Script principal
+└── requirements.txt            # Dependencias
 
-```bash
-python modelo_precios.py
-```
 
-4. Revisa:
-   - La tabla resumen de resultados impresos.
-   - El archivo Excel exportado con los resultados (si lo agregas al final del script).
-   - Los gráficos individuales en la carpeta `graficos/`.
+## 🤝 Contribuciones
+1. Haz fork del proyecto
+2. Crea tu rama (git checkout -b feature/nueva-funcionalidad)
+3. Realiza commit de tus cambios
+4. Haz push a la rama
+5. Abre un Pull Request
 
----
+## Reporte de Issues:
+Usa el tablero de GitHub para reportar bugs o sugerir mejoras.
 
-## 📦 Salida Esperada
+## 📄 Licencia
+Distribuido bajo licencia MIT. Ver LICENSE para más detalles.
 
-- Un **DataFrame** con columnas clave:
-  - `PRECIO_OPTIMO_HISTORICO`
-  - `PRECIO_AJUSTADO_COMPETENCIA`
-  - `PRECIO_DEMANDA_ESPERADA`
-  - `CANTIDAD_PREDICHA`
-  - `ELASTICIDAD`
-  - `OUTLIERS`
-- Archivos `.png` con visualizaciones por cada número de parte.
 
----
 
-## ✍️ Autor
 
-Desarrollado por [Kevin Sepúlveda], con el objetivo de optimizar decisiones de pricing en productos de consumo y competencia directa.
+
